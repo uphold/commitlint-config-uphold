@@ -1,0 +1,44 @@
+{
+  "name": "@uphold/commitlint-config",
+  "version": "0.0.0",
+  "description": "Shareable commitlint config enforcing Uphold's commit conventions",
+  "author": "Uphold",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/uphold/commitlint-config-uphold",
+  "keywords": [
+    "commitlint",
+    "commit",
+    "lint"
+  ],
+  "scripts": {
+    "changelog": "uphold-scripts changelog $npm_package_version",
+    "lint-staged": "lint-staged -q",
+    "lint": "uphold-scripts lint .",
+    "release": "uphold-scripts release",
+    "test": "uphold-scripts test",
+    "version": "uphold-scripts version"
+  },
+  "pre-commit": [
+    "lint-staged"
+  ],
+  "lint-staged": {
+    "*.{js,mjs}": [
+      "uphold-scripts lint"
+    ]
+  },
+  "dependencies": {
+    "wordnet": "^2.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/lint": "^17.0.0",
+    "jest": "^26.6.3",
+    "uphold-scripts": "^0.7.0"
+  },
+  "engines": {
+    "node": ">= 14.0.0"
+  }
+}
