@@ -42,7 +42,7 @@ const isVerb = async word => {
   try {
     definitions = await wordnet.lookup(word);
   } catch (err) {
-    return whitelistedVerbs.includes(word);
+    return null;
   }
 
   const verb = definitions.find(({ meta }) => meta.synsetType === 'verb');
