@@ -1,6 +1,6 @@
 {
   "name": "@uphold/commitlint-config",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Shareable commitlint config enforcing Uphold's commit conventions",
   "author": "Uphold",
   "main": "src/index.js",
