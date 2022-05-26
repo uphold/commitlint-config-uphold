@@ -971,10 +971,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@uphold/github-changelog-generator@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@uphold/github-changelog-generator/-/github-changelog-generator-3.0.0.tgz"
-  integrity sha512-ud8tBgrKz/eOS2hAZPfwyra5fOUKQB7XSXMvaAYUJoyUuVnoEoMvIhcFQUgeb1SAyFdhuU8xboD1BloHENuqPg==
+"@uphold/github-changelog-generator@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@uphold/github-changelog-generator/-/github-changelog-generator-3.1.0.tgz#84c3fc72b2e70e4af23bc9e2c5f3e557906feb3d"
+  integrity sha512-qdF5HMKJ9VzUw5xhd3SPVlGpoEPAO+2rwEfvMBu0u9enrStSHZf8OgWfyW3FQxMPMAfYvEcorjg/XO9ky+1FSA==
   dependencies:
     "@octokit/graphql" "^4.8.0"
     commander "^8.3.0"
@@ -5092,12 +5092,12 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-uphold-scripts@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.npmjs.org/uphold-scripts/-/uphold-scripts-0.7.0.tgz"
-  integrity sha512-G41neOvVII9abJl9f+Q791C2+VZ3h1t0S2npO7w2K5082oNsuEcbh4ZVf3HTy2fkX8BgJ5snFWRM89gYTyEtqQ==
+uphold-scripts@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/uphold-scripts/-/uphold-scripts-0.7.1.tgz#a616b7e58026c29ffd972ea0ff7cfd0a3bc00659"
+  integrity sha512-zFPzIpwwS7gIphXRO/sISnnr3AK9GGAtyOe0DOZwAmCzzC+ikxoLyxYewFI0z3PZf5b/xFa6wHKBLcjv9cVu5Q==
   dependencies:
-    "@uphold/github-changelog-generator" "^3.0.0"
+    "@uphold/github-changelog-generator" "^3.1.0"
     commander "^8.3.0"
     eslint "~8.7.0"
     eslint-config-uphold "^3.0.0"
