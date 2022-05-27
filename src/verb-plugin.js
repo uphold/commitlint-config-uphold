@@ -11,7 +11,7 @@ const wordnet = require('wordnet');
  */
 
 let wordnetInitPromise;
-const normalizePrefixesRegExp = /^(?:re|un|de)-?(.+?)$/;
+const normalizeVerbPrefixesRegExp = /^(?:re|un|de)-?(.+?)$/;
 const whitelistedVerbs = [
   'anonymise',
   'anonymize',
@@ -69,7 +69,7 @@ const startsWithVerbInSimplePresent = async phrase => {
   }
 
   // Check if the word starts with `re`, `de` or `un` and lookup without the prefix.
-  const [, firstWordNormalized] = firstWord.match(normalizePrefixesRegExp) ?? [];
+  const [, firstWordNormalized] = firstWord.match(normalizeVerbPrefixesRegExp) ?? [];
 
   if (firstWordNormalized) {
     valid = await isVerb(firstWordNormalized);
