@@ -42,6 +42,12 @@ extends: "@uphold/commitlint-config"
 
 Verbs are detected using data from [Wordnet](https://wordnet.princeton.edu/) provided by [wordnet](https://www.npmjs.com/package/wordnet) package.
 
+The `wordnet` database is large with more than 28 megabytes because it contains all the english words, including their definitions. To provide the smallest package possible, there's a script that generates a JSON file that contains the extracted english verbs from `wordnet`. To update the generated JSON whenever `wordnet` releases a new version, run:
+
+```sh
+❯ yarn update-wordnet-verbs
+```
+
 > ⚠️ The detection algorithm simply checks if the first word is an english word that may be used as a verb (in the simple-present tense). It does not account if the word is actually a verb in the context of the phrase. It would be possible to detect if it's actually used as a verb by using natural language processing techniques. However, they often give bad results.
 
 ## License

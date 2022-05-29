@@ -4,65 +4,31 @@
  * Module dependencies.
  */
 
-const wordnet = require('wordnet');
+const extraVerbs = require('./extra-verbs.json');
+const wordnetVerbs = require('./wordnet-verbs.json');
 
 /**
- * Instances & constants.
+ * Constants.
  */
 
-let wordnetInitPromise;
 const normalizeVerbPrefixesRegExp = /^(?:re|un|de)-?(.+?)$/;
-const whitelistedVerbs = [
-  'anonymise',
-  'anonymize',
-  'backfill',
-  'blacklist',
-  'decrement',
-  'dry-run',
-  'increment',
-  'lint',
-  'promisify',
-  'refactor',
-  'setup',
-  'whitelist'
-];
 
 /**
- * Checks if a word is a verb in the simple-present tense.
+ * Checks if a word is a verb according to our dictionaries.
  */
 
-const isVerb = async word => {
-  // If it's whitelisted, simply return true.
-  if (whitelistedVerbs.includes(word)) {
-    return true;
-  }
-
-  let definitions;
-
-  try {
-    definitions = await wordnet.lookup(word);
-  } catch (err) {
-    return whitelistedVerbs.includes(word);
-  }
-
-  const verb = definitions.find(({ meta }) => meta.synsetType === 'verb');
-
-  return !!verb;
-};
+const isVerb = word => !!extraVerbs[word] || !!wordnetVerbs[word];
 
 /**
  * Checks if a phrase starts with a verb in the simple-present.
  */
 
-const startsWithVerbInSimplePresent = async phrase => {
+const startsWithVerbInSimplePresent = phrase => {
   const words = phrase.split(/\s/);
   const firstWord = words[0].toLowerCase();
 
-  // Load dictionary just once.
-  await (wordnetInitPromise = wordnetInitPromise ?? wordnet.init());
-
   // Lookup the verb in the dictionary.
-  let valid = await isVerb(firstWord);
+  let valid = isVerb(firstWord);
 
   if (valid) {
     return true;
@@ -72,7 +38,7 @@ const startsWithVerbInSimplePresent = async phrase => {
   const [, firstWordNormalized] = firstWord.match(normalizeVerbPrefixesRegExp) ?? [];
 
   if (firstWordNormalized) {
-    valid = await isVerb(firstWordNormalized);
+    valid = isVerb(firstWordNormalized);
   }
 
   return valid;
@@ -84,13 +50,13 @@ const startsWithVerbInSimplePresent = async phrase => {
 
 module.exports = {
   rules: {
-    'subject-verb-simple-present-tense': async ({ subject }) => {
+    'subject-verb-simple-present-tense': ({ subject }) => {
       // If no subject was detected, do not error out.
       if (!subject) {
         return [true];
       }
 
-      const valid = await startsWithVerbInSimplePresent(subject);
+      const valid = startsWithVerbInSimplePresent(subject);
 
       return [valid, 'subject must start with a verb in the simple-present tense'];
     }

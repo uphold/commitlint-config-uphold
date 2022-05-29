@@ -1,0 +1,14 @@
+{
+  "anonymise": true,
+  "anonymize": true,
+  "backfill": true,
+  "blacklist": true,
+  "decrement": true,
+  "dry-run": true,
+  "increment": true,
+  "lint": true,
+  "promisify": true,
+  "refactor": true,
+  "setup": true,
+  "whitelist": true
+}

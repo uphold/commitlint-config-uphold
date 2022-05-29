@@ -1,0 +1,56 @@
+#!/usr/bin/env node
+
+'use strict';
+
+/**
+ * Module dependencies.
+ */
+
+const fs = require('fs');
+const path = require('path');
+const wordnet = require('wordnet');
+
+/**
+ * Constants.
+ */
+
+const outputPath = `${__dirname}/../src/wordnet-verbs.json`;
+
+/**
+ * Generates a compact JSON file with all english verbs from the `wordnet` package.
+ * The compact JSON file contains verbs as keys and `true` as keys.
+ * This way, verb lookups using this data-structure are fast.
+ */
+
+const updateVerbs = async () => {
+  console.log(`Finding verbs..`);
+
+  await wordnet.init();
+
+  const verbs = {};
+  let verbsCount = 0;
+
+  for (const word of wordnet.list()) {
+    const definitions = await wordnet.lookup(word);
+    const verb = definitions.find(({ meta }) => meta.synsetType === 'verb');
+
+    // Skip if the word is not a verb or has several words.
+    if (!verb || /\s/.test(word)) {
+      continue;
+    }
+
+    verbs[word] = true;
+    verbsCount += 1;
+
+    if (verbsCount % 1000 === 0) {
+      console.log(`Found ${verbsCount} verbs`);
+    }
+  }
+
+  console.log(`Writing ${path.relative(`${__dirname}/..`, outputPath)} with a total of ${verbsCount} verbs..`);
+
+  // eslint-disable-next-line no-sync
+  fs.writeFileSync(outputPath, JSON.stringify(verbs, null, 2));
+};
+
+updateVerbs();
