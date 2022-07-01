@@ -94,19 +94,6 @@ it('should fail if subject is empty', async () => {
   expect(warnings).toHaveLength(0);
 });
 
-it('should fail if a line in body exceeds 72 chars', async () => {
-  const message = `Add new environment Mars
-
-  This new environment was added because other development environments were congested.
-`;
-
-  const { errors, warnings, valid } = await lint(message, rules, options);
-
-  expect(valid).toBe(false);
-  expect(errors).toEqual([expect.objectContaining({ name: 'body-max-line-length' })]);
-  expect(warnings).toHaveLength(0);
-});
-
 describe('verb tense test cases', () => {
   [
     'Add `proofOfAddress` to `User` model',

@@ -15,7 +15,6 @@ This package ensures our commits follow our standard:
 1. Header must start with a verb in the simple present tense (imperative mood).
 1. Header must be sentence-cased, meaning it must start with an uppercase letter.
 1. Header must not end with a full-stop.
-1. Body must not exceed 72 characters per line.
 1. Body can make use of all verb tenses.
 
 ## Installation
