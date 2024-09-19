@@ -1,4 +1,4 @@
-# commitlint-config-uphold
+# @uphold/commitlint-config-uphold
 
 Shareable commitlint config enforcing Uphold's commit conventions.
 
@@ -20,7 +20,7 @@ This package ensures our commits follow our standard:
 ## Installation
 
 ```sh
-❯ npm i commitlint-config-uphold --save-dev
+❯ npm i @uphold/commitlint-config-uphold --save-dev
 ```
 
 or with Yarn:
