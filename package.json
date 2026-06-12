@@ -9,6 +9,13 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/uphold/commitlint-config-uphold",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uphold/commitlint-config-uphold.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uphold/commitlint-config-uphold/issues"
+  },
   "keywords": [
     "commitlint",
     "commit",
